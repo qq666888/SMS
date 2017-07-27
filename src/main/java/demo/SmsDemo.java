@@ -10,6 +10,12 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,7 +41,7 @@ public class SmsDemo {
     static final String accessKeyId = "LTAIjyRSCM8T3fY1";
     static final String accessKeySecret = "ap7NHMTY3rzRGwDZYrRZvIfL8OWaxe";
 
-    public static SendSmsResponse sendSms() throws ClientException {
+    public static SendSmsResponse sendSms(String mobileNumbers) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -49,7 +55,7 @@ public class SmsDemo {
         //组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
         //必填:待发送手机号
-        request.setPhoneNumbers("18612182079");
+        request.setPhoneNumbers(mobileNumbers);
         //必填:短信签名-可在短信控制台中找到
         request.setSignName("大数据");
         //必填:短信模板-可在短信控制台中找到
@@ -101,10 +107,10 @@ public class SmsDemo {
         return querySendDetailsResponse;
     }
 
-    public static void main(String[] args) throws ClientException, InterruptedException {
+    public static void send(String mobileNumbers) throws ClientException, InterruptedException {
 
         //发短信
-        SendSmsResponse response = sendSms();
+        SendSmsResponse response = sendSms(mobileNumbers);
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());
@@ -134,7 +140,6 @@ public class SmsDemo {
             System.out.println("TotalCount=" + querySendDetailsResponse.getTotalCount());
             System.out.println("RequestId=" + querySendDetailsResponse.getRequestId());
         }
-
     }
 }
 
