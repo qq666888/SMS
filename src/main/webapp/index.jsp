@@ -10,7 +10,7 @@
 </head>
 <body>
 <form action="sms" method="post">
-    手机号，逗号分隔 <br>
+    手机号，Enter分隔 <br>
     <textarea type="text" name="mobileNumbers" style="width: 300px;height: 100px;"></textarea><br>
     <input type="submit" value="发送短信">
 </form>
