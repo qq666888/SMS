@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by mingfei.net@gmail.com
  * 7/27/17 09:14
- * https://github.com/thu/SMS/
  */
 @WebServlet(urlPatterns = "/sms")
 public class SmsServlet extends HttpServlet {
